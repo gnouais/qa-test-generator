@@ -32,18 +32,46 @@
 
 ## Retours testeurs
 
-| Testeur | A testé ? | Retour (mot pour mot) | Date |
-|---------|-----------|----------------------|------|
-| 1 |  |  |  |
-| 2 |  |  |  |
-| 3 |  |  |  |
-| 4 |  |  |  |
-| 5 |  |  |  |
-| 6 |  |  |  |
-| 7 |  |  |  |
-| 8 |  |  |  |
+### Testeur 1 — Luis Cavalheiro
+- **A testé ?** : Oui
+- **Date** : [16/03/2026]
+- **Retour :**
 
----
+> Bonjour,
+> Je sais que c'est un prototype mais je vois 2 grandes limitations, à moins que ce soit moi qui n'ait pas vu les options:
+> 1. Comment passer le contexte de la User Story
+> 2. Comment generer les données de test
+> Pour les quelques cas que j'ai essayé, je ne vois pas un user delta etre capable d'executer les cas de tests sans une bonne connaissance de l'application. Pour moi, un bon cas de test doit contenir suffisamment d'information que "mr tout le monde" peut l'executer sans poser de question...
+> Je pense comme toi que dans le futur la generation IA va remplacer le MBT mais les algos ne sont pas encore assez puissant.
+
+### Testeur 2 - Moez Ben Khaled
+- **A testé ?** : Oui
+- **Date** : [16/03/2026]
+- **Retour :**
+
+> Hello,
+> J'ai testé l'outil cet aprem et c'est vraiment top.
+> Juste une question et par expérience : Des fois les PO rédigent mal les tests d'acceptation et c'est très important pour la synchro Squash/Jira et l'automatisation par exemple, y a t'il un moyen > d'évoluer l'outil pour la création des TA avec les cas de test stp?
+> Merci pour ta confiance mon frère.
+
+### Testeur 3 - Romain De Page
+- **A testé ?** : Oui
+- **Date** : [16/03/2026]
+- **Retour :**
+
+> J’ai testé ton outil il est vraiment bien. Tu l’as fait avec quoi?
+> Oui niquel j’ai bien eu les case de tests et je les ai même exportés en .txt pour voir c’est vraiment bien 
+
+
+### Testeur 4 - Diawando DIAWARA  
+- **A testé ?** : Oui
+- **Date** : [16/03/2026]
+- **Retour :**
+
+> Je constate que les cas de tests ne sont pas générés après soumission de la user storie
+> Vous devez avoir reçu le mail. Voici le lien vers le fichier : https://we.tl/t-UVoZ1l86JP
+> Je vais activer mon vpn et reprendre. Je précise qu’avec la user story en exemple ça marche bien
+
 
 ## Métriques
 
@@ -51,8 +79,8 @@
 |----------|-----------------|--------|
 | Prototype utilisable | ✅ | ✅ |
 | Testeurs contactés | 10+ | 8 |
-| Testeurs qui ont testé | 5+ | En attente |
-| Retours exploitables | 3+ | En attente |
+| Testeurs qui ont testé | 5+ | 4 |
+| Retours exploitables | 3+ | 3 |
 
 ---
 
