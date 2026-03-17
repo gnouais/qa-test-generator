@@ -54,6 +54,16 @@
 
 - **Action prise** : Ajout champ contexte applicatif + prompt amélioré (v2). Message envoyé pour retester.
 
+- **A testé ?** : Oui (v2)
+- **Date** : 17/03/2026
+- **Retour :**
+  
+> Salut Amadou,
+> C'est beaucoup mieux.
+> Maintenant d'un point de vue pratique l'appli devrait demander au user de spécifier les données quand celles ci ne sont pas définies au lieu des générer des fausses données
+
+
+
 ### Testeur 2 — Moez Ben Khaled
 - **A testé ?** : Oui (v1)
 - **Date** : 16/03/2026
@@ -84,7 +94,109 @@
 
 - **Action prise** : Restriction géographique API Gemini (Guinée-Conakry). En attente retour avec VPN.
 
-### Testeurs 5-8
+
+### Testeur 5 — Ken Defossez
+- **A testé ?** : OUI
+- **Date** : 17/03/2026
+- **Retour :**
+
+> Hello Amadou merci pour le partage. Je n'ai pas encire testé la team d'agents CrewAI, c'est sur ma todo.
+>Je viens de tester ton outil QA version web, congratz ! Je dois justement travailler sur quelque chose de similaire chez mon client, ca m'intéresse de savoir qu'est-ce qu'il y a sous le capot 🙂
+>Petit retour après mon premier test de l'outil, il m'a parlé de PixelConnect sans que j'y fasse référence 🤪 Mais sinon la disjonction des cas de test et risques pour ma US est top ! 👍
+
+>Mes inputs 
+
+> * US: En tant qu’utilisateur,
+> je veux pouvoir me connecter à mon compte avec mon identifiant et mon mot de passe,
+> afin d’accéder à mon profil, mes messages et mon fil d’actualité.
+
+> *Contexte applicatif : L’application est une plateforme mobile et web de partage de photos et de vidéos permettant aux utilisateurs de publier du contenu, d’interagir avec d’autres > utilisateurs et de consulter un fil d’actualité personnalisé.
+> Pour accéder aux fonctionnalités personnalisées (profil, publications, messages privés, notifications, etc.), l’utilisateur doit posséder un compte et s’authentifier via un écran de > connexion.
+
+- **Action prise** : N/A
+
+
+### Testeur 6 — AYMEN ISMAIL
+- **A testé ?** : OUI
+- **Date** : 17/03/2026
+- **Retour :**
+
+> Salut Amadou, 
+> je te remercie pour ton partage!
+> je viens de tester ton outil QA et franchement chapeau ;)
+> Ton appli fonctionne parfaitement et j'ai pu transformer les cas de test générés en format csv pour les intégrer directement dans JIRA/XRAY.
+> Ca pourra être une idée pour évoluer ton appli en ajoutant d'autres façons d'exporter les cas de test : en langage gherkin ou manuel sous forme de steps, sous fichier csv directement exploitable dans JIRA/WRAY ;)
+> Cordialement
+> Aymen
+
+- **Action prise** : N/A
+
+### Testeur 8 — Tasnim Ferchichi
+- **A testé ?** : OUI
+- **Date** : 17/03/2026
+- **Retour :**
+
+> hello Amadou !
+> je viens de faire un premier test
+> comme préciser sur le site il faut bien entendu donner des infos concernant le contexte sinon ça a l'air assez cohérent !
+
+> Pour vérifier les premiers tests, peut etre qu'il serait bien de faire une matrice de test
+> et avec les résultats de streamlit, cocher/vérifier si effectivement ça match bien, si ça complete avec d'autre cas etc...
+
+> en tout cas c'est bien sympa d'avoir de plus en plus d'outils ! plein de choses à tester 🦾
+
+- **Action prise** : N/A
+
+
+### Testeur 9 — Kalidou BA
+- **A testé ?** : OUI
+- **Date** : 17/03/2026
+- **Retour :**
+
+> Bonjour Amadou,
+> c'est vraiment un super APP et il va beaucoup nous aider avec les cas de tests. 
+> est-ce possible de linker soit l'APK ou le lien web et dès qu'on clique sur les fonctionnalités l'application génére les cas de tests Principal et alternatif
+> Comme par exemple quand on est saisit une requete SQL et le résultat s'affiche
+
+- **Action prise** : N/A
+
+### Testeur 10 — Nicolas TRZCINSKI  
+- **A testé ?** : OUI
+- **Date** : 17/03/2026
+- **Retour :**
+
+> Hello @Amadou FOFANA,
+> Intéressant ton appli ! Je travaille également sur un projet web du même genre, connecté à Jira/Xray. C’est encore en développement, mais ça avance bien pour l'instant c'est
+> uniquement en local. Je dois le présenter à mes responsables début avril.
+> Tu utilises un LLM en local ou une API Claude / OpenAI etc ?
+> Pour l'instant je suis sur de l'API Anthropic.
+> Hâte de voir comme tu avances, je te tiendrai au courant de mes avancées également, qui sait on pourrait collaborer dans le futur sur un même projet 😉
+
+https://www.linkedin.com/dms/prv/image/v2/D4E06AQFoMyL_ij3-xg/messaging-image-720/B4EZz7xVs_HgAY-/0/1773750542006?m=AQKokwmhY7Zy5gAAAZz8Gu9sxbrfY3YhcZKqM-TyCh1DlKeiCWKKaoddcA&ne=1&v=beta&t=um5ya5Q7O2a5Copbj568VsN0zbvHYsMAUfuveGXJbao<img width="757" height="852" alt="image" src="https://github.com/user-attachments/assets/b5bd2cd2-51bb-4e22-81a1-3ac507cc0e34" />
+
+
+> pour la petite histoire ça fait à peu près 1 an et demi que je travaille sur des scripts python de génération de test etc puis un jour je me suis dit mais pourquoi pas créer le couteau suisse QA avec une vraie interface et pas quelque chose uniquement exécutable dans un terminal et uniquement dédié aux plus geeks d'entre nous 😁
+
+
+- **Action prise** : N/A
+
+
+
+
+### Testeur 11 — Lyne VOCTABAH
+- **A testé ?** : OUI
+- **Date** : 17/03/2026
+- **Retour :**
+
+> Est-ce que le lien sauvegarde les user stories ?
+> En tout cas, je trouve que l’outil fait vraiment gagner du temps sur la rédaction 🙌👏
+> Les cas de test sont bien détaillés et faciles à comprendre.
+> J’aime aussi le fait que ce soit hyper simple : tu colles directement ta user story, sans formulaire à remplir, sans création de compte ni vérification type captcha.
+- **Action prise** : N/A
+  
+
+- 
+### Testeurs X (à venir)
 - **A testé ?** : Non
 - **Relance prévue** : 18/03/2026
 
@@ -95,9 +207,9 @@
 | Métrique | Objectif Phase 1 | Actuel |
 |----------|-----------------|--------|
 | Prototype utilisable | ✅ | ✅ |
-| Testeurs contactés | 10+ | 8 |
-| Testeurs qui ont testé | 5+ | 4 |
-| Retours exploitables | 3+ | 3 ✅ |
+| Testeurs contactés | 10+ | 11 |
+| Testeurs qui ont testé | 5+ |11 |
+| Retours exploitables | 3+ | 10 ✅ |
 | Itérations basées sur feedback | - | 1 (v2 contexte) |
 
 ---
