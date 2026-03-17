@@ -264,12 +264,33 @@ if generate:
             # Display results
             st.markdown("---")
             st.markdown("## 📊 Résultats")
-
-            # Show the generated content
             st.markdown(result)
 
-            # Store in session
-            st.session_state['last_result'] = result
+            # --- Generate CSV in the same pass ---
+            csv_data = None
+            csv_count = 0
+            with st.spinner("🔄 Préparation de l'export CSV Jira..."):
+                try:
+                    csv_model = genai.GenerativeModel(
+                        model_name="gemini-2.5-flash",
+                        system_instruction=CSV_CONVERSION_PROMPT
+                    )
+                    csv_response = csv_model.generate_content(
+                        f"Convertis ces cas de test en JSON :\n\n{result}"
+                    )
+                    raw_json = csv_response.text.strip()
+                    # Clean potential markdown fences
+                    if raw_json.startswith("```"):
+                        raw_json = raw_json.split("\n", 1)[1]
+                    if raw_json.endswith("```"):
+                        raw_json = raw_json.rsplit("```", 1)[0]
+                    raw_json = raw_json.strip()
+
+                    test_cases = json.loads(raw_json)
+                    csv_data = json_to_jira_csv(test_cases)
+                    csv_count = len(test_cases)
+                except Exception:
+                    csv_data = None
 
             # --- Export Options ---
             st.markdown("---")
@@ -278,7 +299,6 @@ if generate:
             col_exp1, col_exp2, col_exp3 = st.columns(3)
 
             with col_exp1:
-                # Markdown export
                 export_header = f"# QA Test Generator — Résultats\n\n## User Story\n{user_story}"
                 if app_context and app_context.strip():
                     export_header += f"\n\n## Contexte applicatif\n{app_context}"
@@ -292,7 +312,6 @@ if generate:
                 )
 
             with col_exp2:
-                # TXT export
                 txt_header = f"User Story:\n{user_story}"
                 if app_context and app_context.strip():
                     txt_header += f"\n\nContexte applicatif:\n{app_context}"
@@ -306,43 +325,16 @@ if generate:
                 )
 
             with col_exp3:
-                # CSV Jira export button
-                csv_export = st.button("📊 CSV (Jira/Xray)", use_container_width=True)
-
-            # --- CSV Jira Generation ---
-            if csv_export and st.session_state.get('last_result'):
-                with st.spinner("🔄 Conversion en CSV pour Jira..."):
-                    try:
-                        csv_model = genai.GenerativeModel(
-                            model_name="gemini-2.5-flash",
-                            system_instruction=CSV_CONVERSION_PROMPT
-                        )
-                        csv_response = csv_model.generate_content(
-                            f"Convertis ces cas de test en JSON :\n\n{st.session_state['last_result']}"
-                        )
-                        raw_json = csv_response.text.strip()
-                        # Clean potential markdown fences
-                        if raw_json.startswith("```"):
-                            raw_json = raw_json.split("\n", 1)[1]
-                        if raw_json.endswith("```"):
-                            raw_json = raw_json.rsplit("```", 1)[0]
-                        raw_json = raw_json.strip()
-
-                        test_cases = json.loads(raw_json)
-                        csv_data = json_to_jira_csv(test_cases)
-
-                        st.download_button(
-                            label="⬇️ Télécharger le CSV Jira",
-                            data=csv_data,
-                            file_name="test_cases_jira.csv",
-                            mime="text/csv",
-                            use_container_width=True
-                        )
-                        st.success(f"✅ {len(test_cases)} cas de test convertis pour Jira")
-                    except json.JSONDecodeError:
-                        st.error("❌ Erreur de conversion. Réessayez.")
-                    except Exception as e:
-                        st.error(f"❌ Erreur : {str(e)}")
+                if csv_data:
+                    st.download_button(
+                        label=f"📊 CSV Jira ({csv_count} cas)",
+                        data=csv_data,
+                        file_name="test_cases_jira.csv",
+                        mime="text/csv",
+                        use_container_width=True
+                    )
+                else:
+                    st.warning("CSV indisponible — réessayez")
 
         except Exception as e:
             st.error(f"❌ Erreur : {str(e)}")
