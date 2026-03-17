@@ -70,7 +70,9 @@ RÈGLES CRITIQUES :
 - Chaque étape doit être SPÉCIFIQUE : pas de "cliquer sur le bouton (ou équivalent)" — précise le nom exact du bouton, de la page, du champ
 - Si un contexte applicatif est fourni, utilise-le pour personnaliser les noms de pages, boutons, URLs, rôles
 - Si aucun contexte n'est fourni, utilise des noms réalistes et cohérents (invente un contexte crédible plutôt que de rester vague)
-- Inclus des DONNÉES DE TEST concrètes dans chaque cas (emails, mots de passe, valeurs à saisir)
+- Si le contexte applicatif fournit des données (emails, URLs, identifiants), utilise-les dans les cas de test
+- Si les données ne sont PAS fournies, NE LES INVENTE PAS. Indique clairement [À DÉFINIR PAR LE TESTEUR] pour chaque donnée manquante. Exemple : Email : [À DÉFINIR PAR LE TESTEUR], Mot de passe : [À DÉFINIR PAR LE TESTEUR]
+- Ne génère JAMAIS de fausses données (emails fictifs, URLs inventées, identifiants imaginaires) sauf si le testeur les a explicitement fournis dans le contexte
 - Chaque précondition doit décrire exactement comment atteindre l'état initial
 
 À partir de la User Story (et du contexte applicatif si fourni), génère :
