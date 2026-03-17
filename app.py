@@ -4,6 +4,8 @@ import json
 import time
 import csv
 import io
+import re
+
 
 # --- Page Config ---
 st.set_page_config(
@@ -181,6 +183,13 @@ def json_to_jira_csv(test_cases_json):
     writer = csv.DictWriter(output, fieldnames=fieldnames, quoting=csv.QUOTE_ALL)
     writer.writeheader()
     for tc in test_cases_json:
+        def format_steps(val):
+            """Force un retour à la ligne avant chaque numéro d'étape."""
+            val = val or ""
+            # Remplace "2. ", "3. ", etc. par un retour à la ligne + le numéro
+            # On ne touche pas au "1. " initial
+            val = re.sub(r'(?<!\n)\s*(\d+)\.\s', lambda m: ('\n' + m.group(1) + '. ') if int(m.group(1)) > 1 else (m.group(1) + '. '), val)
+            return val.strip()
         def trunc(val, limit=255):
             val = val or ""
             return val[:252] + "..." if len(val) > limit else val
@@ -188,9 +197,9 @@ def json_to_jira_csv(test_cases_json):
             "Test Case ID": tc.get("Test Case ID", ""),
             "Résumé": trunc(tc.get("Summary", "")),
             "Description": tc.get("Description", ""),
-            "Preconditions": trunc(tc.get("Preconditions", "")),
-            "Test Steps": trunc(tc.get("Test Steps", "")),
-            "Expected Result": trunc(tc.get("Expected Result", "")),
+            "Preconditions": trunc(format_steps(tc.get("Preconditions", ""))),
+            "Test Steps": trunc(format_steps(tc.get("Test Steps", ""))),
+            "Expected Result": trunc(format_steps(tc.get("Expected Result", ""))),
             "Priorité": tc.get("Priority", "Moyenne"),
         })
     return output.getvalue()
