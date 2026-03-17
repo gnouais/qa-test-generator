@@ -17,48 +17,22 @@ st.markdown("""
 <style>
 @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=DM+Sans:wght@400;500;600;700&display=swap');
 
-/* Global */
-.stApp {
-    font-family: 'DM Sans', sans-serif;
-}
+.stApp { font-family: 'DM Sans', sans-serif; }
 
-/* Header */
-.main-header {
-    text-align: center;
-    padding: 2rem 0 1rem 0;
-}
+.main-header { text-align: center; padding: 2rem 0 1rem 0; }
 .main-header h1 {
     font-family: 'JetBrains Mono', monospace;
-    font-size: 2.2rem;
-    font-weight: 700;
-    color: #1a1a2e;
-    margin-bottom: 0.3rem;
+    font-size: 2.2rem; font-weight: 700; color: #1a1a2e; margin-bottom: 0.3rem;
 }
-.main-header p {
-    font-size: 1.1rem;
-    color: #6b7280;
-    margin-top: 0;
-}
+.main-header p { font-size: 1.1rem; color: #6b7280; margin-top: 0; }
 .badge {
-    display: inline-block;
-    background: #f0fdf4;
-    color: #16a34a;
-    font-size: 0.75rem;
-    font-weight: 600;
-    padding: 0.25rem 0.75rem;
-    border-radius: 999px;
-    border: 1px solid #bbf7d0;
-    margin-bottom: 1rem;
+    display: inline-block; background: #f0fdf4; color: #16a34a;
+    font-size: 0.75rem; font-weight: 600; padding: 0.25rem 0.75rem;
+    border-radius: 999px; border: 1px solid #bbf7d0; margin-bottom: 1rem;
 }
-
-/* Footer */
 .footer {
-    text-align: center;
-    color: #9ca3af;
-    font-size: 0.8rem;
-    padding: 2rem 0 1rem 0;
-    border-top: 1px solid #f3f4f6;
-    margin-top: 3rem;
+    text-align: center; color: #9ca3af; font-size: 0.8rem;
+    padding: 2rem 0 1rem 0; border-top: 1px solid #f3f4f6; margin-top: 3rem;
 }
 </style>
 """, unsafe_allow_html=True)
@@ -261,14 +235,12 @@ if generate:
                 response = model.generate_content(user_message)
                 result = response.text
 
-            # Display results
-            st.markdown("---")
-            st.markdown("## 📊 Résultats")
-            st.markdown(result)
+            # Store result in session_state
+            st.session_state['result'] = result
+            st.session_state['user_story'] = user_story
+            st.session_state['app_context'] = app_context if app_context else ""
 
             # --- Generate CSV in the same pass ---
-            csv_data = None
-            csv_count = 0
             with st.spinner("🔄 Préparation de l'export CSV Jira..."):
                 try:
                     csv_model = genai.GenerativeModel(
@@ -279,7 +251,6 @@ if generate:
                         f"Convertis ces cas de test en JSON :\n\n{result}"
                     )
                     raw_json = csv_response.text.strip()
-                    # Clean potential markdown fences
                     if raw_json.startswith("```"):
                         raw_json = raw_json.split("\n", 1)[1]
                     if raw_json.endswith("```"):
@@ -287,57 +258,73 @@ if generate:
                     raw_json = raw_json.strip()
 
                     test_cases = json.loads(raw_json)
-                    csv_data = json_to_jira_csv(test_cases)
-                    csv_count = len(test_cases)
+                    st.session_state['csv_data'] = json_to_jira_csv(test_cases)
+                    st.session_state['csv_count'] = len(test_cases)
                 except Exception:
-                    csv_data = None
-
-            # --- Export Options ---
-            st.markdown("---")
-            st.markdown("### 📥 Exporter")
-
-            col_exp1, col_exp2, col_exp3 = st.columns(3)
-
-            with col_exp1:
-                export_header = f"# QA Test Generator — Résultats\n\n## User Story\n{user_story}"
-                if app_context and app_context.strip():
-                    export_header += f"\n\n## Contexte applicatif\n{app_context}"
-                markdown_content = f"{export_header}\n\n---\n\n{result}"
-                st.download_button(
-                    label="📄 Markdown",
-                    data=markdown_content,
-                    file_name="test_cases.md",
-                    mime="text/markdown",
-                    use_container_width=True
-                )
-
-            with col_exp2:
-                txt_header = f"User Story:\n{user_story}"
-                if app_context and app_context.strip():
-                    txt_header += f"\n\nContexte applicatif:\n{app_context}"
-                txt_content = f"{txt_header}\n\n---\n\n{result}"
-                st.download_button(
-                    label="📋 TXT",
-                    data=txt_content,
-                    file_name="test_cases.txt",
-                    mime="text/plain",
-                    use_container_width=True
-                )
-
-            with col_exp3:
-                if csv_data:
-                    st.download_button(
-                        label=f"📊 CSV Jira ({csv_count} cas)",
-                        data=csv_data,
-                        file_name="test_cases_jira.csv",
-                        mime="text/csv",
-                        use_container_width=True
-                    )
-                else:
-                    st.warning("CSV indisponible — réessayez")
+                    st.session_state['csv_data'] = None
+                    st.session_state['csv_count'] = 0
 
         except Exception as e:
             st.error(f"❌ Erreur : {str(e)}")
+
+# --- Display results from session_state (persists across reruns) ---
+if st.session_state.get('result'):
+    result = st.session_state['result']
+    us = st.session_state.get('user_story', '')
+    ctx = st.session_state.get('app_context', '')
+
+    st.markdown("---")
+    st.markdown("## 📊 Résultats")
+    st.markdown(result)
+
+    # --- Export Options ---
+    st.markdown("---")
+    st.markdown("### 📥 Exporter")
+
+    col_exp1, col_exp2, col_exp3 = st.columns(3)
+
+    with col_exp1:
+        export_header = f"# QA Test Generator — Résultats\n\n## User Story\n{us}"
+        if ctx.strip():
+            export_header += f"\n\n## Contexte applicatif\n{ctx}"
+        markdown_content = f"{export_header}\n\n---\n\n{result}"
+        st.download_button(
+            label="📄 Markdown",
+            data=markdown_content,
+            file_name="test_cases.md",
+            mime="text/markdown",
+            use_container_width=True,
+            key="dl_markdown"
+        )
+
+    with col_exp2:
+        txt_header = f"User Story:\n{us}"
+        if ctx.strip():
+            txt_header += f"\n\nContexte applicatif:\n{ctx}"
+        txt_content = f"{txt_header}\n\n---\n\n{result}"
+        st.download_button(
+            label="📋 TXT",
+            data=txt_content,
+            file_name="test_cases.txt",
+            mime="text/plain",
+            use_container_width=True,
+            key="dl_txt"
+        )
+
+    with col_exp3:
+        csv_data = st.session_state.get('csv_data')
+        csv_count = st.session_state.get('csv_count', 0)
+        if csv_data:
+            st.download_button(
+                label=f"📊 CSV Jira ({csv_count} cas)",
+                data=csv_data,
+                file_name="test_cases_jira.csv",
+                mime="text/csv",
+                use_container_width=True,
+                key="dl_csv"
+            )
+        else:
+            st.warning("CSV indisponible — réessayez")
 
 # --- Footer ---
 st.markdown("""
