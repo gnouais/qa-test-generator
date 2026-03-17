@@ -2,6 +2,8 @@ import streamlit as st
 import google.generativeai as genai
 import json
 import time
+import csv
+import io
 
 # --- Page Config ---
 st.set_page_config(
@@ -131,6 +133,30 @@ RÈGLES GÉNÉRALES :
 - Structure ta réponse en Markdown clair avec les 3 sections ci-dessus
 """
 
+# --- CSV Conversion Prompt ---
+CSV_CONVERSION_PROMPT = """Tu es un assistant qui convertit des cas de test en format JSON strict pour import Jira.
+
+À partir des cas de test fournis, extrais UNIQUEMENT les cas de test fonctionnels et les cas limites (PAS les risques) et retourne un tableau JSON.
+
+Chaque objet du tableau doit avoir exactement ces champs :
+- "Test Case ID": identifiant unique (TC-001, TC-002, etc.)
+- "Summary": le titre du cas de test
+- "Description": description courte du cas de test
+- "Preconditions": les préconditions (texte brut, pas de Markdown)
+- "Test Steps": toutes les étapes numérotées sur des lignes séparées (texte brut)
+- "Expected Result": tous les résultats attendus (texte brut)
+- "Priority": "Haute", "Moyenne" ou "Basse" (en français)
+
+RÈGLES STRICTES :
+- Retourne UNIQUEMENT le tableau JSON, rien d'autre
+- Pas de texte avant ou après le JSON
+- Pas de backticks ```json
+- Pas de commentaires
+- Le JSON doit être valide et parsable directement
+- Garde les priorités en français : "Haute", "Moyenne", "Basse"
+- Supprime tout formatage Markdown (**, ##, *, etc.) dans les valeurs
+"""
+
 # --- Header ---
 st.markdown("""
 <div class="main-header">
@@ -171,6 +197,25 @@ Techno : React + API REST
 Règles mot de passe : 
 min 8 caractères, 1 majuscule, 
 1 chiffre, 1 caractère spécial""", language=None)
+
+# --- Helper: Convert JSON to CSV ---
+def json_to_jira_csv(test_cases_json):
+    """Convert parsed JSON test cases to CSV string for Jira import."""
+    output = io.StringIO()
+    fieldnames = ["Test Case ID", "Résumé", "Description", "Preconditions", "Test Steps", "Expected Result", "Priorité"]
+    writer = csv.DictWriter(output, fieldnames=fieldnames, quoting=csv.QUOTE_ALL)
+    writer.writeheader()
+    for tc in test_cases_json:
+        writer.writerow({
+            "Test Case ID": tc.get("Test Case ID", ""),
+            "Résumé": tc.get("Summary", ""),
+            "Description": tc.get("Description", ""),
+            "Preconditions": tc.get("Preconditions", ""),
+            "Test Steps": tc.get("Test Steps", ""),
+            "Expected Result": tc.get("Expected Result", ""),
+            "Priorité": tc.get("Priority", "Moyenne"),
+        })
+    return output.getvalue()
 
 # --- Main Inputs ---
 user_story = st.text_area(
@@ -223,11 +268,14 @@ if generate:
             # Show the generated content
             st.markdown(result)
 
+            # Store in session
+            st.session_state['last_result'] = result
+
             # --- Export Options ---
             st.markdown("---")
             st.markdown("### 📥 Exporter")
 
-            col_exp1, col_exp2 = st.columns(2)
+            col_exp1, col_exp2, col_exp3 = st.columns(3)
 
             with col_exp1:
                 # Markdown export
@@ -236,7 +284,7 @@ if generate:
                     export_header += f"\n\n## Contexte applicatif\n{app_context}"
                 markdown_content = f"{export_header}\n\n---\n\n{result}"
                 st.download_button(
-                    label="📄 Télécharger en Markdown",
+                    label="📄 Markdown",
                     data=markdown_content,
                     file_name="test_cases.md",
                     mime="text/markdown",
@@ -248,17 +296,53 @@ if generate:
                 txt_header = f"User Story:\n{user_story}"
                 if app_context and app_context.strip():
                     txt_header += f"\n\nContexte applicatif:\n{app_context}"
-                csv_content = f"{txt_header}\n\n---\n\n{result}"
+                txt_content = f"{txt_header}\n\n---\n\n{result}"
                 st.download_button(
-                    label="📋 Télécharger en TXT",
-                    data=csv_content,
+                    label="📋 TXT",
+                    data=txt_content,
                     file_name="test_cases.txt",
                     mime="text/plain",
                     use_container_width=True
                 )
 
-            # Store in session for copy
-            st.session_state['last_result'] = result
+            with col_exp3:
+                # CSV Jira export button
+                csv_export = st.button("📊 CSV (Jira/Xray)", use_container_width=True)
+
+            # --- CSV Jira Generation ---
+            if csv_export and st.session_state.get('last_result'):
+                with st.spinner("🔄 Conversion en CSV pour Jira..."):
+                    try:
+                        csv_model = genai.GenerativeModel(
+                            model_name="gemini-2.5-flash",
+                            system_instruction=CSV_CONVERSION_PROMPT
+                        )
+                        csv_response = csv_model.generate_content(
+                            f"Convertis ces cas de test en JSON :\n\n{st.session_state['last_result']}"
+                        )
+                        raw_json = csv_response.text.strip()
+                        # Clean potential markdown fences
+                        if raw_json.startswith("```"):
+                            raw_json = raw_json.split("\n", 1)[1]
+                        if raw_json.endswith("```"):
+                            raw_json = raw_json.rsplit("```", 1)[0]
+                        raw_json = raw_json.strip()
+
+                        test_cases = json.loads(raw_json)
+                        csv_data = json_to_jira_csv(test_cases)
+
+                        st.download_button(
+                            label="⬇️ Télécharger le CSV Jira",
+                            data=csv_data,
+                            file_name="test_cases_jira.csv",
+                            mime="text/csv",
+                            use_container_width=True
+                        )
+                        st.success(f"✅ {len(test_cases)} cas de test convertis pour Jira")
+                    except json.JSONDecodeError:
+                        st.error("❌ Erreur de conversion. Réessayez.")
+                    except Exception as e:
+                        st.error(f"❌ Erreur : {str(e)}")
 
         except Exception as e:
             st.error(f"❌ Erreur : {str(e)}")
