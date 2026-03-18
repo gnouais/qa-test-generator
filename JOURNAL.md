@@ -176,7 +176,35 @@
 > Je dirai utiliser l’approche BDD pour les cas de test ?
 > Beaucoup de courage à toi ✨😊👏
 
+### Testeur 11 — Elodie Juino
+- **A testé ?** : non
+- **Date** : 18/03/2026
+- **Retour :**
 
+> Merci, on est en client lourd, est ce compatible ? 
+
+> Moi (Amadou)
+> Bonjour Élodie,
+> Oui, justement 👍
+
+> Comme c’est une version web, il n’y a rien à installer côté poste ni à intégrer dans votre SI.
+> Donc aucun impact sur votre environnement client lourd.
+
+> Aujourd’hui, l’outil est utilisé en mode “assistant” :
+> tu colles une user story et tu récupères rapidement des cas de test exploitables.
+
+> Ça s’intègre très bien dans vos pratiques actuelles sans rien changer à votre stack.
+
+> Si besoin, je peux aussi te montrer comment on peut aller plus loin (export Jira, adaptation à vos standards, etc.).
+
+> Tu veux que je te fasse une démo rapide ?
+
+**Elodie**
+> Merci Amadou
+> Ça sera avec plaisir après notre grand rech actuel
+> Ton outil m'aidera sûrement beaucoup 
+
+- **Action prise** : N/A
 
 ## Métriques
 
