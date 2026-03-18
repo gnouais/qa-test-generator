@@ -14,27 +14,130 @@ st.set_page_config(
     layout="wide"
 )
 
-# --- Custom CSS ---
+# --- Custom CSS - Emerald Theme ---
 st.markdown("""
 <style>
 @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=DM+Sans:wght@400;500;600;700&display=swap');
 
-.stApp { font-family: 'DM Sans', sans-serif; }
+/* === GLOBAL === */
+.stApp {
+    font-family: 'DM Sans', sans-serif;
+}
 
-.main-header { text-align: center; padding: 2rem 0 1rem 0; }
+/* === HEADER === */
+.main-header {
+    text-align: center;
+    padding: 2.5rem 0 1.5rem 0;
+}
 .main-header h1 {
     font-family: 'JetBrains Mono', monospace;
-    font-size: 2.2rem; font-weight: 700; color: #1a1a2e; margin-bottom: 0.3rem;
+    font-size: 2.4rem;
+    font-weight: 700;
+    background: linear-gradient(135deg, #059669, #10B981, #34D399);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 0.5rem;
 }
-.main-header p { font-size: 1.1rem; color: #6b7280; margin-top: 0; }
+.main-header .tagline {
+    font-size: 1.15rem;
+    color: #6b7280;
+    margin-top: 0;
+    margin-bottom: 1rem;
+}
 .badge {
-    display: inline-block; background: #f0fdf4; color: #16a34a;
-    font-size: 0.75rem; font-weight: 600; padding: 0.25rem 0.75rem;
-    border-radius: 999px; border: 1px solid #bbf7d0; margin-bottom: 1rem;
+    display: inline-block;
+    background: #ecfdf5;
+    color: #059669;
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 0.3rem 0.9rem;
+    border-radius: 999px;
+    border: 1px solid #a7f3d0;
+    margin-bottom: 0.8rem;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
 }
+.welcome-stats {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin-top: 1rem;
+    margin-bottom: 0.5rem;
+}
+.stat-item {
+    text-align: center;
+}
+.stat-number {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #059669;
+}
+.stat-label {
+    font-size: 0.8rem;
+    color: #9ca3af;
+    margin-top: 0.1rem;
+}
+
+/* === SIDEBAR === */
+section[data-testid="stSidebar"] {
+    background-color: #f0fdf4;
+}
+section[data-testid="stSidebar"] .stMarkdown h3 {
+    color: #059669;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.95rem;
+}
+
+/* === BUTTONS === */
+.stButton > button[kind="primary"] {
+    background: linear-gradient(135deg, #059669, #10B981) !important;
+    color: white !important;
+    border: none !important;
+    font-weight: 600 !important;
+    padding: 0.6rem 1.5rem !important;
+    border-radius: 8px !important;
+    font-size: 1rem !important;
+    transition: all 0.2s ease !important;
+}
+.stButton > button[kind="primary"]:hover {
+    background: linear-gradient(135deg, #047857, #059669) !important;
+    transform: translateY(-1px) !important;
+    box-shadow: 0 4px 12px rgba(5, 150, 105, 0.3) !important;
+}
+
+/* === DOWNLOAD BUTTONS === */
+.stDownloadButton > button {
+    border: 1px solid #d1fae5 !important;
+    color: #059669 !important;
+    font-weight: 600 !important;
+    border-radius: 8px !important;
+    transition: all 0.2s ease !important;
+}
+.stDownloadButton > button:hover {
+    background-color: #ecfdf5 !important;
+    border-color: #059669 !important;
+}
+
+/* === TEXT AREA === */
+.stTextArea textarea {
+    border-radius: 8px !important;
+    border: 1px solid #d1d5db !important;
+    font-family: 'DM Sans', sans-serif !important;
+}
+.stTextArea textarea:focus {
+    border-color: #10B981 !important;
+    box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.15) !important;
+}
+
+/* === FOOTER === */
 .footer {
-    text-align: center; color: #9ca3af; font-size: 0.8rem;
-    padding: 2rem 0 1rem 0; border-top: 1px solid #f3f4f6; margin-top: 3rem;
+    text-align: center;
+    color: #9ca3af;
+    font-size: 0.8rem;
+    padding: 2rem 0 1rem 0;
+    border-top: 1px solid #e5e7eb;
+    margin-top: 3rem;
 }
 </style>
 """, unsafe_allow_html=True)
@@ -169,9 +272,23 @@ RÈGLES STRICTES :
 # --- Header ---
 st.markdown("""
 <div class="main-header">
-    <div class="badge">MVP — Phase 1</div>
+    <div class="badge">✨ Propulsé par l'IA</div>
     <h1>🧪 QA Test Generator</h1>
-    <p>Collez une User Story → Obtenez vos cas de test en 30 secondes</p>
+    <p class="tagline">Transformez vos User Stories en cas de test complets en 30 secondes.</p>
+    <div class="welcome-stats">
+        <div class="stat-item">
+            <div class="stat-number">4</div>
+            <div class="stat-label">Formats d'export</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-number">30s</div>
+            <div class="stat-label">Temps de génération</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-number">0</div>
+            <div class="stat-label">Config requise</div>
+        </div>
+    </div>
 </div>
 """, unsafe_allow_html=True)
 
@@ -179,12 +296,14 @@ st.markdown("""
 api_key = st.secrets.get("GEMINI_API_KEY", "")
 
 with st.sidebar:
+    st.markdown("### 🧪 QA Test Generator")
+    st.markdown("---")
     st.markdown("### 📖 Comment ça marche")
     st.markdown("""
     1. Collez votre User Story
     2. *(Optionnel)* Ajoutez le contexte de votre app
     3. Cliquez sur **Générer**
-    4. Copiez ou exportez les résultats
+    4. Exportez en Markdown, TXT, CSV Jira ou Gherkin
     """)
 
     st.markdown("---")
@@ -207,6 +326,10 @@ Règles mot de passe :
 min 8 caractères, 1 majuscule, 
 1 chiffre, 1 caractère spécial""", language=None)
 
+    st.markdown("---")
+    st.markdown("### 📊 Exports disponibles")
+    st.markdown("📄 Markdown · 📋 TXT · 📊 CSV Jira · 🥒 Gherkin")
+
 # --- Helper: Convert JSON to CSV ---
 def json_to_jira_csv(test_cases_json):
     """Convert parsed JSON test cases to CSV string for Jira import."""
@@ -216,7 +339,6 @@ def json_to_jira_csv(test_cases_json):
     writer.writeheader()
     for tc in test_cases_json:
         def format_steps(val):
-            """Force un retour à la ligne avant chaque numéro d'étape."""
             val = val or ""
             val = re.sub(r'(?<!\n)\s*(\d+)\.\s', lambda m: ('\n' + m.group(1) + '. ') if int(m.group(1)) > 1 else (m.group(1) + '. '), val)
             return val.strip()
@@ -235,10 +357,12 @@ def json_to_jira_csv(test_cases_json):
     return output.getvalue()
 
 # --- Main Inputs ---
+st.markdown("#### 📋 Votre User Story")
 user_story = st.text_area(
-    "📋 Votre User Story",
+    "User Story",
     height=150,
-    placeholder="En tant que [rôle], je veux [action], afin de [bénéfice]...\n\nVous pouvez aussi coller des critères d'acceptance, des règles métier, ou toute description fonctionnelle."
+    placeholder="En tant que [rôle], je veux [action], afin de [bénéfice]...\n\nVous pouvez aussi coller des critères d'acceptance, des règles métier, ou toute description fonctionnelle.",
+    label_visibility="collapsed"
 )
 
 with st.expander("🏢 Contexte applicatif (optionnel — recommandé pour des tests plus précis)"):
@@ -268,7 +392,6 @@ if generate:
                 system_instruction=SYSTEM_PROMPT
             )
 
-            # Build the user message with optional context
             if app_context and app_context.strip():
                 user_message = f"CONTEXTE APPLICATIF :\n{app_context}\n\n---\n\nUSER STORY À ANALYSER :\n{user_story}"
             else:
@@ -278,12 +401,10 @@ if generate:
                 response = model.generate_content(user_message)
                 result = response.text
 
-            # Store result in session_state
             st.session_state['result'] = result
             st.session_state['user_story'] = user_story
             st.session_state['app_context'] = app_context if app_context else ""
 
-            # --- Generate CSV in the same pass ---
             with st.spinner("🔄 Préparation de l'export CSV Jira..."):
                 try:
                     csv_model = genai.GenerativeModel(
@@ -299,7 +420,6 @@ if generate:
                     if raw_json.endswith("```"):
                         raw_json = raw_json.rsplit("```", 1)[0]
                     raw_json = raw_json.strip()
-
                     test_cases = json.loads(raw_json)
                     st.session_state['csv_data'] = json_to_jira_csv(test_cases)
                     st.session_state['csv_count'] = len(test_cases)
@@ -307,7 +427,6 @@ if generate:
                     st.session_state['csv_data'] = None
                     st.session_state['csv_count'] = 0
 
-            # --- Generate Gherkin in the same pass ---
             with st.spinner("🔄 Génération des scénarios Gherkin / BDD..."):
                 try:
                     gherkin_model = genai.GenerativeModel(
@@ -318,7 +437,6 @@ if generate:
                         f"Convertis ces cas de test en scénarios Gherkin :\n\n{result}"
                     )
                     gherkin_text = gherkin_response.text.strip()
-                    # Clean potential markdown fences
                     if gherkin_text.startswith("```"):
                         gherkin_text = gherkin_text.split("\n", 1)[1]
                     if gherkin_text.endswith("```"):
@@ -330,25 +448,30 @@ if generate:
         except Exception as e:
             st.error(f"❌ Erreur : {str(e)}")
 
-# --- Display results from session_state (persists across reruns) ---
+# --- Display results from session_state ---
 if st.session_state.get('result'):
     result = st.session_state['result']
     us = st.session_state.get('user_story', '')
     ctx = st.session_state.get('app_context', '')
 
     st.markdown("---")
-    st.markdown("## 📊 Résultats")
-    st.markdown(result)
 
-    # --- Gherkin Preview ---
-    gherkin_data = st.session_state.get('gherkin_data')
-    if gherkin_data:
-        with st.expander("🥒 Scénarios Gherkin / BDD (cliquez pour voir)"):
+    # --- Results in tabs ---
+    tab_results, tab_gherkin = st.tabs(["📊 Cas de test", "🥒 Gherkin / BDD"])
+
+    with tab_results:
+        st.markdown(result)
+
+    with tab_gherkin:
+        gherkin_data = st.session_state.get('gherkin_data')
+        if gherkin_data:
             st.code(gherkin_data, language="gherkin")
+        else:
+            st.info("Gherkin non disponible pour cette génération.")
 
     # --- Export Options ---
     st.markdown("---")
-    st.markdown("### 📥 Exporter")
+    st.markdown("### 📥 Exporter les résultats")
 
     col_exp1, col_exp2, col_exp3, col_exp4 = st.columns(4)
 
@@ -396,6 +519,7 @@ if st.session_state.get('result'):
             st.warning("CSV indisponible")
 
     with col_exp4:
+        gherkin_data = st.session_state.get('gherkin_data')
         if gherkin_data:
             st.download_button(
                 label="🥒 Gherkin",
@@ -411,6 +535,7 @@ if st.session_state.get('result'):
 # --- Footer ---
 st.markdown("""
 <div class="footer">
-    QA Test Generator — MVP Phase 1 · Propulsé par Google Gemini · Fait avec ❤️ pour la communauté QA
+    QA Test Generator · Propulsé par l'IA · Fait avec ❤️ pour la communauté QA<br>
+    <span style="font-size: 0.7rem; color: #d1d5db;">Un outil par Amadou FOFANA — Le Testeur Augmenté</span>
 </div>
 """, unsafe_allow_html=True)
