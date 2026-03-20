@@ -388,6 +388,7 @@ if generate:
                 except Exception:
                     st.session_state['csv_data'] = None
                     st.session_state['csv_count'] = 0
+                    st.warning(f"CSV error: {str(e)}")
 
             with st.spinner("Génération des scénarios Gherkin..."):
                 try:
