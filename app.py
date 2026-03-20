@@ -320,7 +320,7 @@ st.markdown(f'<p class="section-title">{ICON_CLIPBOARD} Votre User Story</p>', u
 # Try Example button
 col_demo1, col_demo2, col_demo3 = st.columns([1, 1, 1])
 with col_demo2:
-if st.button("Voir une démo — pré-remplir avec un exemple", use_container_width=True):
+    if st.button("Voir une démo — pré-remplir avec un exemple", use_container_width=True):
         st.session_state['demo_us'] = DEMO_USER_STORY
         st.session_state['demo_ctx'] = DEMO_CONTEXT
 
