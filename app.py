@@ -9,14 +9,30 @@ import re
 # --- SVG Icons (Emerald, 20px, inline) ---
 ICON_CHECK = '<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg>'
 ICON_ZAP = '<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>'
-ICON_FILE = '<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><line x1="10" y1="9" x2="8" y2="9"/></svg>'
 ICON_CLIPBOARD = '<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><rect x="8" y="2" width="8" height="4" rx="1" ry="1"/></svg>'
-ICON_LAYERS = '<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>'
 ICON_DOWNLOAD = '<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>'
-ICON_CODE = '<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>'
-ICON_BOOK = '<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>'
-ICON_SETTINGS = '<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>'
 ICON_SHIELD = '<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>'
+ICON_PLAY = '<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"/></svg>'
+
+# --- Demo Data ---
+DEMO_USER_STORY = """En tant qu'utilisateur,
+je veux pouvoir réinitialiser mon mot de passe via email,
+afin de récupérer l'accès à mon compte."""
+
+DEMO_CONTEXT = """App : MonBanquier.fr
+Type : application bancaire web
+URL : https://app.monbanquier.fr
+Page de connexion : /login
+Page mot de passe oublié : /forgot-password
+Bouton : "Mot de passe oublié ?" sur la page /login
+Bouton : "Envoyer le lien" sur la page /forgot-password
+Champs : Email (obligatoire), Nouveau mot de passe, Confirmer le mot de passe
+Rôles : Client, Conseiller, Admin
+Règles mot de passe : min 8 caractères, 1 majuscule, 1 chiffre, 1 caractère spécial
+Email expéditeur : noreply@monbanquier.fr
+Durée de validité du lien : 30 minutes
+Message de succès : "Un email de réinitialisation vous a été envoyé."
+Message d'erreur : "Adresse email non reconnue." """
 
 # --- Page Config ---
 st.set_page_config(
@@ -32,7 +48,6 @@ st.markdown("""
 
 .stApp { font-family: 'DM Sans', sans-serif; }
 
-/* === HEADER === */
 .main-header { text-align: center; padding: 2.5rem 0 1.5rem 0; }
 .main-header h1 {
     font-family: 'JetBrains Mono', monospace;
@@ -54,20 +69,17 @@ st.markdown("""
 .stat-number { font-family: 'JetBrains Mono', monospace; font-size: 1.5rem; font-weight: 700; color: #059669; }
 .stat-label { font-size: 0.78rem; color: #9ca3af; margin-top: 0.15rem; }
 
-/* === SECTION TITLES === */
 .section-title {
     font-family: 'JetBrains Mono', monospace; font-size: 0.95rem;
     font-weight: 600; color: #374151; letter-spacing: 0.3px; margin-bottom: 0.5rem;
 }
 .section-title svg { vertical-align: -4px; margin-right: 6px; }
 
-/* === SIDEBAR === */
 section[data-testid="stSidebar"] { background-color: #f0fdf4; }
 section[data-testid="stSidebar"] .stMarkdown h3 {
     color: #059669; font-family: 'JetBrains Mono', monospace; font-size: 0.9rem; letter-spacing: 0.3px;
 }
 
-/* === BUTTONS === */
 .stButton > button[kind="primary"] {
     background: linear-gradient(135deg, #059669, #10B981) !important;
     color: white !important; border: none !important; font-weight: 600 !important;
@@ -80,7 +92,6 @@ section[data-testid="stSidebar"] .stMarkdown h3 {
     box-shadow: 0 4px 12px rgba(5, 150, 105, 0.3) !important;
 }
 
-/* === DOWNLOAD BUTTONS === */
 .stDownloadButton > button {
     border: 1px solid #d1fae5 !important; color: #059669 !important;
     font-weight: 600 !important; border-radius: 8px !important;
@@ -90,7 +101,6 @@ section[data-testid="stSidebar"] .stMarkdown h3 {
     background-color: #ecfdf5 !important; border-color: #059669 !important;
 }
 
-/* === TEXT AREA === */
 .stTextArea textarea {
     border-radius: 8px !important; border: 1px solid #d1d5db !important;
     font-family: 'DM Sans', sans-serif !important;
@@ -100,7 +110,6 @@ section[data-testid="stSidebar"] .stMarkdown h3 {
     box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.15) !important;
 }
 
-/* === FOOTER === */
 .footer {
     text-align: center; color: #9ca3af; font-size: 0.8rem;
     padding: 2rem 0 1rem 0; border-top: 1px solid #e5e7eb; margin-top: 3rem;
@@ -176,9 +185,9 @@ Chaque objet du tableau doit avoir exactement ces champs :
 - "Test Case ID": identifiant unique (TC-001, TC-002, etc.)
 - "Summary": le titre du cas de test
 - "Description": description courte du cas de test
-- "Preconditions": les préconditions, chaque précondition sur une ligne séparée avec un numéro (1. xxx\\n2. xxx\\n3. xxx)
-- "Test Steps": les étapes, CHAQUE ÉTAPE SUR UNE LIGNE SÉPARÉE avec un numéro (1. xxx\\n2. xxx\\n3. xxx). Utilise \\n pour séparer les lignes.
-- "Expected Result": les résultats attendus, CHAQUE RÉSULTAT SUR UNE LIGNE SÉPARÉE avec un numéro (1. xxx\\n2. xxx). Utilise \\n pour séparer les lignes.
+- "Preconditions": les préconditions, chaque précondition sur une ligne séparée avec un numéro
+- "Test Steps": les étapes, CHAQUE ÉTAPE SUR UNE LIGNE SÉPARÉE avec un numéro
+- "Expected Result": les résultats attendus, CHAQUE RÉSULTAT SUR UNE LIGNE SÉPARÉE avec un numéro
 - "Priority": "Haute", "Moyenne" ou "Basse" (en français)
 
 RÈGLES STRICTES :
@@ -299,19 +308,35 @@ def json_to_jira_csv(test_cases_json):
         })
     return output.getvalue()
 
+# --- Initialize session state for demo ---
+if 'demo_us' not in st.session_state:
+    st.session_state['demo_us'] = ""
+if 'demo_ctx' not in st.session_state:
+    st.session_state['demo_ctx'] = ""
+
 # --- Main Inputs ---
 st.markdown(f'<p class="section-title">{ICON_CLIPBOARD} Votre User Story</p>', unsafe_allow_html=True)
+
+# Try Example button
+col_demo1, col_demo2, col_demo3 = st.columns([1, 1, 1])
+with col_demo2:
+    if st.button("Essayer avec un exemple", use_container_width=True):
+        st.session_state['demo_us'] = DEMO_USER_STORY
+        st.session_state['demo_ctx'] = DEMO_CONTEXT
+
 user_story = st.text_area(
     "User Story",
     height=150,
+    value=st.session_state.get('demo_us', ''),
     placeholder="En tant que [rôle], je veux [action], afin de [bénéfice]...\n\nVous pouvez aussi coller des critères d'acceptance, des règles métier, ou toute description fonctionnelle.",
     label_visibility="collapsed"
 )
 
-with st.expander("Contexte applicatif (optionnel — recommandé pour des tests plus précis)"):
+with st.expander("Contexte applicatif (optionnel — recommandé pour des tests plus précis)", expanded=bool(st.session_state.get('demo_ctx', ''))):
     app_context = st.text_area(
         "Décrivez votre application",
         height=120,
+        value=st.session_state.get('demo_ctx', ''),
         placeholder="Nom de l'app, type (web/mobile), URL, pages principales, rôles utilisateurs, règles métier, stack technique, contraintes spécifiques...\n\nPlus vous donnez de contexte, plus les cas de test seront précis et exécutables.",
         label_visibility="collapsed"
     )
@@ -323,6 +348,10 @@ with col2:
 
 # --- Generation Logic ---
 if generate:
+    # Clear demo state after generation
+    st.session_state['demo_us'] = ""
+    st.session_state['demo_ctx'] = ""
+
     if not api_key:
         st.error("Configuration API manquante. Contactez l'administrateur.")
     elif not user_story.strip():
@@ -394,7 +423,6 @@ if st.session_state.get('result'):
         else:
             st.info("Gherkin non disponible pour cette génération.")
 
-    # --- Export Options ---
     st.markdown("---")
     st.markdown(f'<p class="section-title">{ICON_DOWNLOAD} Exporter les résultats</p>', unsafe_allow_html=True)
 
