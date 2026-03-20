@@ -227,6 +227,22 @@ Luis Cavalheiro     11:06
 
 - **Action prise** : Lead chaud. Relancer dans 2 semaines après sa recette.
 
+
+
+### Karima SORIANO
+- **A testé ?** : Non (pas encore)
+- **Date** : 20/03/2026
+- **Retour :**
+
+> Je suis intéressée par cet outil qui génère les cas de tests,
+> j’ai commencé à expérimenter un peu mais les résultats ne sont pas tous pertinents,
+> l’Ia hallucine parfois quand le résultat n’est pas clairement explicite dans les critères d’acceptance
+> Amadou FOFANA il faut que je l’essaye sur une vraie Us
+> donc sur mon pc pro si ça fonctionne,
+> et si le lien n’est pas bloqué par notre proxy
+
+- **Action prise** : lead chaud enterprise. Relancer dans une semaine si elle n'a pas donné de retour.
+
 ### Leads LinkedIn (post carrousel — 18/03/2026)
 - Lewis Dieu Ne Dort BABE YAKA — Senior QA Engineer — commenté "QA" — DM envoyé
 - Ali KAR — Ingénieur Testing Agile ISTQB — commenté "QA" — DM envoyé
@@ -238,6 +254,7 @@ Luis Cavalheiro     11:06
 - Abdelkrim BOUHRAOUA — QA Testeur ISTQB — commenté "QA" — DM envoyé
 - Abdessamad Nacih — Ingénieur QA — commenté "QA" — DM envoyé
 - Elodie Juino — commenté "QA !" — déjà en contact DM
+- Karima SORIANO - Test Manager/Lead Chapter QA chez Bforbank
 
 ---
 
