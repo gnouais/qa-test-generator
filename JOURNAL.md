@@ -212,6 +212,17 @@
 
 - **Action prise** : Lead enterprise (Bforbank). Relancer dans 1 semaine.
 
+
+### Testeur 13 — Rezika D
+- **A testé ?** : Oui
+- **Date** : 22/03/2026
+- **Retour :**
+
+> Merci beaucoup, je viens de faire un test, et franchement je trouve que ça marche très bien,
+> la liste des cas de tests est complète y a les cas passants et non passants, il faut quand même bien vérifier derrière si tout est ok,
+> après j'ai déjà essayé de faire la même chose sur copilote pa ex et j'ai eu presque le même résultat en terme de cas de tests
+> mais c'est bien d'voir un agent IA spécialement fait pour les tests
+
 ### Leads LinkedIn (post carrousel — 18/03/2026)
 - Lewis Dieu Ne Dort BABE YAKA — Senior QA Engineer — DM envoyé
 - Ali KAR — Ingénieur Testing Agile ISTQB — DM envoyé
