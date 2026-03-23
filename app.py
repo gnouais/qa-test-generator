@@ -133,6 +133,7 @@ Si malgré le contexte fourni certaines données manquent encore, marque-les [À
 === FIN RÈGLE ===
 
 À partir de la User Story et du contexte applicatif fourni, génère :
+Ne te présente JAMAIS. Ne fais aucune introduction. Commence DIRECTEMENT par "## 1. CAS DE TEST FONCTIONNELS".
 
 ## 1. CAS DE TEST FONCTIONNELS
 Pour chaque cas de test : Titre, Préconditions, Données de test, Étapes numérotées, Résultat attendu, Priorité (Haute/Moyenne/Basse)
@@ -161,6 +162,8 @@ Si AUCUN contexte applicatif n'est fourni :
 === FIN RÈGLE ===
 
 À partir de la User Story (et du contexte applicatif si fourni), génère :
+
+Ne te présente JAMAIS. Ne fais aucune introduction. Commence DIRECTEMENT par "## 1. CAS DE TEST FONCTIONNELS".
 
 ## 1. CAS DE TEST FONCTIONNELS
 Pour chaque cas de test : Titre, Préconditions, Données de test, Étapes numérotées, Résultat attendu, Priorité (Haute/Moyenne/Basse)
@@ -362,6 +365,9 @@ if st.session_state.get('step') == 'input' or st.session_state.get('step') is No
                 with st.spinner("Analyse et génération des tests..."):
                     response = model.generate_content(user_message)
                     result = response.text
+                    # Nettoyer le préambule IA s'il existe
+                    if "## 1." in result:
+                        result = result[result.index("## 1."):]
 
                 st.session_state['result'] = result
                 st.session_state['user_story'] = user_story
@@ -411,6 +417,9 @@ if st.session_state.get('step') == 'questions' and st.session_state.get('questio
                 with st.spinner("Génération des cas de test avec vos précisions..."):
                     response = model.generate_content(user_message)
                     result = response.text
+                    # Nettoyer le préambule IA s'il existe
+                    if "## 1." in result:
+                        result = result[result.index("## 1."):]
 
                 st.session_state['result'] = result
                 st.session_state['user_story'] = us
