@@ -272,11 +272,11 @@ def generate_gherkin(result):
         return None
 
 # --- Init session state ---
-for key in ['demo_us', 'demo_ctx', 'result', 'user_story', 'app_context',
+for key in ['result', 'user_story', 'app_context',
             'csv_data', 'csv_count', 'gherkin_data', 'questions', 'answers',
             'step', 'analysis_us']:
     if key not in st.session_state:
-        st.session_state[key] = "" if key in ['demo_us', 'demo_ctx', 'user_story', 'app_context', 'analysis_us'] else None if key in ['result', 'csv_data', 'gherkin_data', 'questions'] else 0 if key in ['csv_count'] else {} if key == 'answers' else 'input' if key == 'step' else None
+        st.session_state[key] = "" if key in ['user_story', 'app_context', 'analysis_us'] else None if key in ['result', 'csv_data', 'gherkin_data', 'questions'] else 0 if key in ['csv_count'] else {} if key == 'answers' else 'input' if key == 'step' else None
 
 # --- Main Input ---
 st.markdown(f'<p class="section-title">{ICON_CLIPBOARD} Votre User Story</p>', unsafe_allow_html=True)
@@ -284,15 +284,17 @@ st.markdown(f'<p class="section-title">{ICON_CLIPBOARD} Votre User Story</p>', u
 col_demo1, col_demo2, col_demo3 = st.columns([1, 1, 1])
 with col_demo2:
     if st.button("Voir une démo — pré-remplir avec un exemple", use_container_width=True):
-        st.session_state['demo_us'] = DEMO_USER_STORY
-        st.session_state['demo_ctx'] = DEMO_CONTEXT
+        st.session_state['user_story_input'] = DEMO_USER_STORY
         st.session_state['step'] = 'input'
         st.session_state['result'] = None
         st.session_state['questions'] = None
         st.rerun()
 
+if 'user_story_input' not in st.session_state:
+    st.session_state['user_story_input'] = ""
+
 user_story = st.text_area(
-    "User Story", height=150, value=st.session_state.get('demo_us', ''),
+    "User Story", height=150, key="user_story_input",
     placeholder="En tant que [rôle], je veux [action], afin de [bénéfice]...",
     label_visibility="collapsed"
 )
@@ -311,8 +313,6 @@ if st.session_state.get('step') == 'input' or st.session_state.get('step') is No
 
     # --- GUIDED MODE: Step 1 - Analysis ---
     if guided:
-        st.session_state['demo_us'] = ""
-        st.session_state['demo_ctx'] = ""
         st.session_state['result'] = None
         st.session_state['csv_data'] = None
         st.session_state['gherkin_data'] = None
@@ -344,8 +344,6 @@ if st.session_state.get('step') == 'input' or st.session_state.get('step') is No
 
     # --- DIRECT MODE ---
     if direct:
-        st.session_state['demo_us'] = ""
-        st.session_state['demo_ctx'] = ""
         st.session_state['result'] = None
         st.session_state['csv_data'] = None
         st.session_state['gherkin_data'] = None
@@ -513,6 +511,7 @@ if st.session_state.get('result'):
             st.session_state['step'] = 'input'
             st.session_state['csv_count'] = 0
             st.session_state['answers'] = {}
+            st.session_state['user_story_input'] = ""
             st.rerun()
 
 # --- Footer ---
