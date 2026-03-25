@@ -139,7 +139,13 @@ LANGUE : Détecte la langue de la User Story. Réponds INTÉGRALEMENT dans cette
 Ne te présente JAMAIS. Ne fais aucune introduction. Commence DIRECTEMENT par la section 1.
 
 ## 1. CAS DE TEST FONCTIONNELS (ou FUNCTIONAL TEST CASES si la User Story est en anglais)
-Pour chaque cas de test : Titre, Préconditions, Données de test, Étapes numérotées, Résultat attendu, Priorité (Haute/Moyenne/Basse ou High/Medium/Low)
+Pour chaque cas de test, utilise exactement cette structure (traduis les noms de champs dans la langue de la User Story) :
+- Titre / Title
+- Préconditions / Preconditions
+- Données de test / Test Data
+- Étapes numérotées / Numbered Steps
+- Résultat attendu / Expected Result
+- Priorité (Haute/Moyenne/Basse) / Priority (High/Medium/Low)
 
 ## 2. CAS LIMITES / EDGE CASES
 Valeurs limites, erreurs, concurrence, timeout. Pour chaque : titre + données + description + résultat attendu
@@ -171,7 +177,13 @@ LANGUE : Détecte la langue de la User Story. Réponds INTÉGRALEMENT dans cette
 Ne te présente JAMAIS. Ne fais aucune introduction. Commence DIRECTEMENT par la section 1.
 
 ## 1. CAS DE TEST FONCTIONNELS (ou FUNCTIONAL TEST CASES si la User Story est en anglais)
-Pour chaque cas de test : Titre, Préconditions, Données de test, Étapes numérotées, Résultat attendu, Priorité (Haute/Moyenne/Basse ou High/Medium/Low)
+Pour chaque cas de test, utilise exactement cette structure (traduis les noms de champs dans la langue de la User Story) :
+- Titre / Title
+- Préconditions / Preconditions
+- Données de test / Test Data
+- Étapes numérotées / Numbered Steps
+- Résultat attendu / Expected Result
+- Priorité (Haute/Moyenne/Basse) / Priority (High/Medium/Low)
 
 ## 2. CAS LIMITES / EDGE CASES
 Valeurs limites, erreurs, concurrence, timeout. Pour chaque : titre + données + description + résultat attendu
