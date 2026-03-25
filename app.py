@@ -264,21 +264,27 @@ def json_to_jira_csv(test_cases_json):
     writer = csv.DictWriter(output, fieldnames=fieldnames, quoting=csv.QUOTE_ALL)
     writer.writeheader()
     for tc in test_cases_json:
+        def to_str(val):
+            if val is None:
+                return ""
+            if isinstance(val, list):
+                return "\n".join(str(item) for item in val)
+            return str(val)
         def fmt(val):
-            val = val or ""
+            val = to_str(val)
             val = re.sub(r'(?<!\n)\s*(\d+)\.\s', lambda m: ('\n' + m.group(1) + '. ') if int(m.group(1)) > 1 else (m.group(1) + '. '), val)
             return val.strip()
         def trunc(val, limit=255):
-            val = val or ""
+            val = to_str(val)
             return val[:252] + "..." if len(val) > limit else val
         writer.writerow({
-            "Test Case ID": tc.get("Test Case ID", ""),
+            "Test Case ID": to_str(tc.get("Test Case ID", "")),
             "Résumé": trunc(tc.get("Summary", "")),
-            "Description": tc.get("Description", ""),
+            "Description": to_str(tc.get("Description", "")),
             "Preconditions": trunc(fmt(tc.get("Preconditions", ""))),
             "Test Steps": trunc(fmt(tc.get("Test Steps", ""))),
             "Expected Result": trunc(fmt(tc.get("Expected Result", ""))),
-            "Priorité": tc.get("Priority", "Moyenne"),
+            "Priorité": to_str(tc.get("Priority", "Moyenne")),
         })
     return output.getvalue()
 
