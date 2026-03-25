@@ -139,6 +139,7 @@ From the User Story and application context provided, generate:
 NEVER introduce yourself. No introduction. Start DIRECTLY with section 1.
 
 ## 1. FUNCTIONAL TEST CASES / CAS DE TEST FONCTIONNELS
+This section must contain ~70% of all test cases. Include ALL nominal, alternative, and error cases here.
 Number each case: CTF-001, CTF-002, CTF-003, etc.
 For each test case, use exactly this structure (in the language of the User Story):
 - Title / Titre
@@ -149,8 +150,9 @@ For each test case, use exactly this structure (in the language of the User Stor
 - Priority (High/Medium/Low) / Priorité (Haute/Moyenne/Basse)
 
 ## 2. EDGE CASES / CAS LIMITES
+This section must contain ~30% of all test cases. ONLY boundary values, concurrency, timeout, and extreme scenarios that go beyond normal functional testing.
 Number each case: CE-001, CE-002, CE-003, etc.
-Boundary values, errors, concurrency, timeout. Use the same structure as functional test cases:
+Use the same structure as functional test cases:
 - Title / Titre
 - Preconditions / Préconditions
 - Test Data / Données de test
@@ -186,6 +188,7 @@ From the User Story (and application context if provided), generate:
 NEVER introduce yourself. No introduction. Start DIRECTLY with section 1.
 
 ## 1. FUNCTIONAL TEST CASES / CAS DE TEST FONCTIONNELS
+This section must contain ~70% of all test cases. Include ALL nominal, alternative, and error cases here.
 Number each case: CTF-001, CTF-002, CTF-003, etc.
 For each test case, use exactly this structure (in the language of the User Story):
 - Title / Titre
@@ -196,8 +199,9 @@ For each test case, use exactly this structure (in the language of the User Stor
 - Priority (High/Medium/Low) / Priorité (Haute/Moyenne/Basse)
 
 ## 2. EDGE CASES / CAS LIMITES
+This section must contain ~30% of all test cases. ONLY boundary values, concurrency, timeout, and extreme scenarios that go beyond normal functional testing.
 Number each case: CE-001, CE-002, CE-003, etc.
-Boundary values, errors, concurrency, timeout. Use the same structure as functional test cases:
+Use the same structure as functional test cases:
 - Title / Titre
 - Preconditions / Préconditions
 - Test Data / Données de test
