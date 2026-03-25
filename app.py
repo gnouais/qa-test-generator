@@ -217,8 +217,8 @@ Le contenu doit être dans la même langue que les cas de test fournis.
 Retourne UNIQUEMENT le JSON. Pas de backticks. JSON valide uniquement. Pas de Markdown dans les valeurs."""
 
 GHERKIN_CONVERSION_PROMPT = """Convertis les cas de test en Gherkin strict.
-Feature/Scenario/Given/When/Then en anglais.
-Le contenu des scénarios doit être dans la même langue que les cas de test fournis.
+Les mots-clés Gherkin (Feature, Scenario, Given, When, Then, And, Scenario Outline, Examples) sont toujours en anglais.
+TOUT le reste (titres de Feature, titres de Scenario, contenu des steps, données des Examples) doit être dans la même langue que les cas de test fournis. Si les cas de test sont en anglais, tout le contenu doit être en anglais. Si les cas de test sont en français, tout le contenu doit être en français.
 Chaque cas de test = un Scenario. Pas les risques.
 Scenario Outline avec Examples pour les jeux de données multiples.
 Texte brut uniquement, pas de Markdown."""
