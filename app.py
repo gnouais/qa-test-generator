@@ -302,12 +302,13 @@ st.markdown(f'<p class="section-title">{ICON_CLIPBOARD} Votre User Story</p>', u
 
 col_demo1, col_demo2, col_demo3 = st.columns([1, 1, 1])
 with col_demo2:
-    if st.button("Voir une démo — pré-remplir avec un exemple", use_container_width=True):
+    def load_demo():
         st.session_state['user_story_input'] = DEMO_USER_STORY
         st.session_state['step'] = 'input'
         st.session_state['result'] = None
         st.session_state['questions'] = None
-        st.rerun()
+
+    st.button("Voir une démo — pré-remplir avec un exemple", use_container_width=True, on_click=load_demo)
 
 if 'user_story_input' not in st.session_state:
     st.session_state['user_story_input'] = ""
@@ -524,14 +525,15 @@ if st.session_state.get('result'):
     st.markdown("---")
     col_new1, col_new2, col_new3 = st.columns([1, 1, 1])
     with col_new2:
-        if st.button("Nouvelle génération", use_container_width=True):
+        def reset_app():
             for key in ['result', 'csv_data', 'gherkin_data', 'questions']:
                 st.session_state[key] = None
             st.session_state['step'] = 'input'
             st.session_state['csv_count'] = 0
             st.session_state['answers'] = {}
             st.session_state['user_story_input'] = ""
-            st.rerun()
+
+        st.button("Nouvelle génération", use_container_width=True, on_click=reset_app)
 
 # --- Footer ---
 st.markdown(f"""
