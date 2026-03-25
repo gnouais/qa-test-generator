@@ -52,6 +52,17 @@
 - [x] Romain : bug bouton démo identifié
 - [x] Lyne : retours UX — navigation, responsive mobile, cohérence langue FR/EN
 
+### Jours 10-11 (24-25/03) — ✅ FAIT
+- [x] ~30 personnes contactées avec le lien de l'app
+- [x] Retours exploitables : Anass (valide "[À DÉFINIR PAR LE TESTEUR]"), Sim (mode collaboratif), Karima (cas passants OK, non-passants à creuser), Sidi (langue FR/EN, bouton micro), Rida (mode guidé + export validés), Najat (lien Gherkin/auto), Ngoné (mode guidé validé), Sara Bencheikh (compare avec Gemini/Copilot, préfère l'outil)
+- [x] Sara Bencheikh : "Vraiment rien à dire j'adore", compare favorablement avec Gemini et Copilot
+- [x] Ken Defossez : a présenté l'outil à son responsable client chez Amadeus, veut intégrer Jira/Octane → 1er signal d'adoption enterprise
+- [x] Karima : RDV visio proposé pour démo (créneaux vendredi 28/03 ou lundi 30/03)
+- [x] Anass : valide la logique "[À DÉFINIR PAR LE TESTEUR]", confirme le potentiel malgré le front prototype
+- [x] Bug langue confirmé par 2 testeurs (Lyne + Sidi) : US en anglais → tests en français
+- [x] Ajustement prompts app.py : section fonctionnelle ~70% / edge cases ~30%
+- [x] Réponse LinkedIn rédigée pour Julien Mer (structuration données en amont du LLM)
+
 ### Leçons apprises
 - La friction tue l'adoption
 - Le contexte applicatif change tout (retour Luis)
@@ -64,18 +75,22 @@
 - Aissata = cas d'usage parfait pour le pitch (600 tests manuels, sous-staffée)
 - Les proxys entreprise peuvent bloquer l'accès (Karima, Jean-Yves)
 - Streamlit n'est pas responsive mobile (retour Lyne)
-- Le mélange FR/EN dans le Gherkin perturbe certains testeurs (retour Lyne)
+- Le mélange FR/EN dans le Gherkin perturbe certains testeurs (retour Lyne, Sidi)
+- La comparaison directe avec Gemini/Copilot est favorable (Sara Bencheikh)
+- Le taux de conversion contact → test réel est ~25-30% — normal pour du LinkedIn
+- Les "je vais tester" sans relance à 48h ne convertissent presque jamais
 
 ### En attente
-- [ ] Fixer bug bouton démo (Romain)
-- [ ] Répondre aux testeurs (Lyne, Jordan, Aissata, Said, Jean-Yves, Karima)
+- [x] ~~Fixer bug bouton démo (Romain)~~ — FAIT et validé
+- [ ] Retour de Karima après visio démo (créneaux proposés : 28/03 ou 30/03)
+- [ ] Retour de Luis sur le mode guidé
+- [ ] Retour de Diawando avec VPN
+- [ ] Retour d'Elodie — relancer début avril
+- [ ] Relancer les "je vais tester" à 48h : Marie-Eve, Ngoné, Andriamaroson Fabius, Oumar Sidibe, Racchana
 - [ ] Contacter Aissata pour creuser son cas d'usage
 - [ ] Publier post LinkedIn #3 (hallucinations IA)
 - [ ] Publier newsletter #2
-- [ ] Retour de Luis sur le mode guidé
-- [ ] Retour de Karima après test PC pro
-- [ ] Retour de Diawando avec VPN
-- [ ] Retour d'Elodie — relancer début avril
+- [ ] Avancer sur le lead Ken Defossez (Amadeus/Jira/Octane)
 
 ---
 
@@ -93,13 +108,14 @@
 ### Testeur 3 — Romain De Page
 - **Retour v1 :** "vraiment bien", export .txt fonctionne
 - **Retour Jour 9 :** Bug — si on efface la démo pré-remplie, le bouton ne fonctionne plus sans rafraîchir
-- **Action** : Bug à fixer
+- **Action** : ✅ Bug fixé et validé (Jour 11)
 
 ### Testeur 4 — Diawando DIAWARA
 - **Retour :** Restriction géo API Gemini. En attente VPN.
 
 ### Testeur 5 — Ken Defossez
 - **Retour :** Bug PixelConnect corrigé. Signal B2B : "on nous demande des initiatives AI"
+- **Retour Jour 10-11 :** A présenté l'outil à son responsable client chez Amadeus. Veut intégrer Jira/Octane. Intéressé par la formation. → **1ER LEAD ENTERPRISE. PRIORITÉ.**
 
 ### Testeur 6 — Aymen Ismail
 - **Retour :** Demande CSV Jira et Gherkin → les deux livrés
@@ -126,7 +142,8 @@
 
 ### Testeur 12 — Karima SORIANO
 - **Retour Jour 9 :** "Je l'ai envoyé vers ma boîte pro pour l'essayer aujourd'hui. Nos US ne sont pas simples, il y a du back et du front (mobile) donc beaucoup d'écrans Figma."
-- **Action** : En attente retour test PC pro. Lead enterprise Bforbank.
+- **Retour Jour 10-11 :** Cas passants OK, moins convaincant sur les non-passants. Intéressée par l'analyse de qualité/complétude des US. RDV visio proposé (28/03 ou 30/03). Sera à ParisTestConf mardi 01/04.
+- **Action** : Lead enterprise Bforbank. RDV visio à confirmer.
 
 ### Testeur 13 — Rezika D
 - **Retour :** "ça marche très bien, similaire à Copilot mais bien d'avoir un outil spécialisé"
@@ -164,6 +181,87 @@
   - "À voir pour générer des sessions tres amigos"
 - **Action** : En attente. Signal intéressant sur les "tres amigos" (collaboration PO/dev/QA).
 
+### Testeur 18 — Anass Aouissi
+- **Date** : 24-25/03/2026
+- **Retour :**
+  - Suggestions front-end et design UX
+  - Demande de masquer le prompt système visible
+  - Valide la logique "[À DÉFINIR PAR LE TESTEUR]" comme approche pertinente
+  - "Le potentiel de l'outil est déjà très prometteur même à ce stade de prototype"
+- **Action** : Retour exploitable. Améliorations front prévues Phase 2 (migration Next.js).
+
+### Testeur 19 — Sim Bienvenue Houl-boumi
+- **Date** : 24/03/2026
+- **Retour :** "Très intéressant pour organiser le travail d'équipe. Tu peux ajouter un mode collaboratif"
+- **Action** : Mode collaboratif → backlog Phase 2.
+
+### Testeur 20 — Sidi (nom complet à confirmer)
+- **Date** : 24/03/2026
+- **Retour :**
+  - Outil très utile pour gagner du temps
+  - Bug langue : US en anglais → tests générés en français (confirme le signal de Lyne)
+  - Suggestion : bouton micro / voice-to-text
+  - Suggestion : pré-remplir les réponses du mode guidé
+- **Action** : ✅ Bug langue fixé (détection dans les 4 prompts). Bouton micro et pré-remplissage → backlog.
+
+### Testeur 21 — Rida Belaqziz
+- **Date** : 24/03/2026
+- **Retour :** Très positif, valide le mode guidé et les formats d'export. Suggestion : aperçu éditable avant export.
+- **Action** : Aperçu éditable → backlog Phase 2.
+
+### Testeur 22 — Najat Challou
+- **Date** : 24/03/2026
+- **Retour :** Positif, souligne le lien Gherkin/automatisation. Demande si formations automatisation disponibles.
+- **Action** : Lead formation potentiel.
+
+### Testeur 23 — Ngoné SENE MANE
+- **Date** : 24-25/03/2026
+- **Retour :** Positif, valide le mode guidé. Utilise déjà Claude pour Gherkin sur Zephyr/Jira.
+- **Action** : Profil intéressant — utilisatrice d'IA concurrente, peut comparer.
+
+### Testeur 24 — Sara Bencheikh
+- **Date** : 25/03/2026
+- **Retour :**
+  - "Vraiment rien à dire j'adore"
+  - Compare directement avec Gemini et Copilot : "on a aussi des résultats mais là c'est top"
+  - Valide la possibilité de télécharger les résultats et la génération des cas de tests
+- **Action** : **MEILLEUR TÉMOIGNAGE UTILISATEUR.** À solliciter pour quote landing page / newsletter.
+
+### Testeur 25 — Sonia Chehida
+- **Date** : 25/03/2026
+- **Retour :** "Très intéressant ton partage. J'utilise également l'IA pour la rédaction de mes cas de test ça va plus vite"
+- **Action** : N'a pas testé l'outil, utilise déjà l'IA. À relancer pour tester.
+
+### Testeur 26 — Jean-François Fresi
+- **Date** : 25/03/2026
+- **Retour :** "C'est top ! Bravo !"
+- **Action** : Réaction positive mais pas de feedback actionnable. À relancer pour retour détaillé.
+
+### Testeur 27 — Andriamaroson Fabius
+- **Date** : 25/03/2026
+- **Retour :** "Un très bon travail. Très curieux d'essayer ça. Je te donnerai un retour sur mon expérience."
+- **Action** : Promesse de test. Relancer à 48h si pas de retour.
+
+### Testeur 28 — Oumar Sidibe
+- **Date** : 25/03/2026
+- **Retour :** "Ok merci je vais check ça"
+- **Action** : Promesse de test. Relancer à 48h si pas de retour.
+
+### Testeur 29 — Racchana PHCAR
+- **Date** : 25/03/2026
+- **Retour :** En formation Playwright/Postman. "Yes je m'en doutais ! 🔥" (après précision que l'outil ne nécessite pas d'être technique)
+- **Action** : Intéressée mais pas dispo immédiatement. Relancer dans 1 semaine.
+
+### Testeur 30 — Marie-Eve Lafrance
+- **Date** : 25/03/2026
+- **Retour :** "Je vais aller regarder cela. Merci ! 😊"
+- **Action** : Promesse de test. Relancer à 48h si pas de retour.
+
+### Testeur 31 — Bineta SALL
+- **Date** : 24/03/2026
+- **Retour :** "Cet outil m'intéresse beaucoup, je me suis abonnée à ta newsletter. Je vais le tester très prochainement."
+- **Action** : Promesse de test + abonnée newsletter. Relancer à 48h.
+
 ---
 
 ## Métriques
@@ -171,19 +269,21 @@
 | Métrique | Objectif Phase 1 | Actuel | Jour |
 |----------|-----------------|--------|------|
 | Prototype utilisable | ✅ | ✅ | J2 |
-| Testeurs confirmés | 10+ | 17 ✅ | J9 |
-| Testeurs qui ont testé | 5+ | 15 ✅ | J9 |
-| Retours exploitables | 3+ | 16 ✅ | J9 |
-| Itérations produit | - | 8 | J8 |
+| Testeurs confirmés | 10+ | 31 ✅ | J11 |
+| Testeurs qui ont testé | 5+ | ~18 ✅ | J11 |
+| Retours exploitables | 3+ | ~20 ✅ | J11 |
+| Itérations produit | - | 10 | J11 |
 | Formats d'export | - | 4 | J4 |
 | Modes de génération | - | 2 (Guidé + Direct) | J8 |
 | Posts LinkedIn | 3 | 3 | J8 |
 | Newsletter publiée | 1 | 1 ✅ | J6 |
 | Abonnés newsletter | - | 928 | J6 |
 | Vidéo démo | - | ✅ | J8 |
-| Mode guidé validé | - | ✅ (Aissata, Jordan) | J9 |
-| Jours écoulés / 30 | - | 9/30 (30%) | - |
-| Utilisateurs actifs | 100-500 | ~25 | J9 |
+| Mode guidé validé | - | ✅ (Aissata, Jordan, Sara, Rida, Ngoné) | J11 |
+| Jours écoulés / 30 | - | 11/30 (37%) | - |
+| Utilisateurs actifs | 100-500 | ~35 | J11 |
+| Leads enterprise | - | 2 (Ken/Amadeus, Karima/Bforbank) | J11 |
+| Taux conversion contact→test | - | ~25-30% | J11 |
 
 ---
 
@@ -196,12 +296,13 @@
 6. **Prompt strict** : v3
 7. **Export CSV Jira/Xray** : retours Aymen, Nicolas, Moez
 8. **Export Gherkin/BDD** : retours Aymen, Lyne
-9. **Mode guidé** : v8 — dialogue interactif (retour Luis) — VALIDÉ par Aissata et Jordan
+9. **Mode guidé** : v8 — dialogue interactif (retour Luis) — VALIDÉ par Aissata, Jordan, Sara, Rida, Ngoné
 10. **Collaboration Nicolas** : déclinée
 11. **Smartesting/Lynqa** : contact décliné
 12. **Formation** : mode maintenance
 13. **Newsletter** : "Le Testeur Augmenté" — hebdomadaire
 14. **Migration Next.js** : prévue Phase 2
+15. **Répartition prompts** : ~70% cas fonctionnels / ~30% edge cases (Jour 10)
 
 ## Backlog
 - [x] Prompt strict (Luis v2)
@@ -211,13 +312,20 @@
 - [x] Optimisation performance
 - [x] Vidéo démo
 - [x] Mode guidé — dialogue interactif (Luis v4-v5)
-- [ ] **Bug bouton démo — ne se réactive pas après effacement (Romain)** — À FIXER
-- [ ] Cohérence langue FR/EN dans le Gherkin (Lyne)
+- [x] Ajustement répartition prompts 70/30 (Jour 10)
+- [x] Bug bouton démo — ne se réactive pas après effacement (Romain) — FIXÉ et validé (Jour 11)
+- [x] Détection de langue — générer dans la langue de la US (Lyne, Sidi) — FIXÉ, règle dans les 4 prompts (Jour 11)
+- [x] Cohérence langue FR/EN dans le Gherkin (Lyne) — couvert par le fix détection de langue
+- [x] Masquer le prompt système visible côté front (Anass) — FIXÉ, instruction "NEVER introduce yourself" + troncature code (Jour 11)
+- [ ] Aperçu éditable avant export (Rida)
+- [ ] Mode collaboratif (Sim)
+- [ ] Pré-remplissage réponses mode guidé (Sidi)
 - [ ] Historique / sauvegarde des générations (Lyne)
 - [ ] Génération de tests d'acceptance / TA (Moez)
 - [ ] Matrice de test (Tasnim)
 - [ ] Sessions "tres amigos" (Jean-Yves) — à explorer
 - [ ] Analyse d'app par URL/APK (Kalidou) — vision long terme
+- [ ] Bouton micro / voice-to-text (Sidi) — gadget, pas prioritaire
 - [ ] Gestion restrictions géo API (Diawando)
 - [ ] Migration Next.js + responsive mobile (Phase 2)
 
