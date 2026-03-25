@@ -139,6 +139,7 @@ LANGUE : Détecte la langue de la User Story. Réponds INTÉGRALEMENT dans cette
 Ne te présente JAMAIS. Ne fais aucune introduction. Commence DIRECTEMENT par la section 1.
 
 ## 1. CAS DE TEST FONCTIONNELS (ou FUNCTIONAL TEST CASES si la User Story est en anglais)
+Numérote chaque cas : CTF-001, CTF-002, CTF-003, etc.
 Pour chaque cas de test, utilise exactement cette structure (traduis les noms de champs dans la langue de la User Story) :
 - Titre / Title
 - Préconditions / Preconditions
@@ -148,9 +149,11 @@ Pour chaque cas de test, utilise exactement cette structure (traduis les noms de
 - Priorité (Haute/Moyenne/Basse) / Priority (High/Medium/Low)
 
 ## 2. CAS LIMITES / EDGE CASES
+Numérote chaque cas : CE-001, CE-002, CE-003, etc.
 Valeurs limites, erreurs, concurrence, timeout. Pour chaque : titre + données + description + résultat attendu
 
 ## 3. SUGGESTIONS DE RISQUES / RISK SUGGESTIONS
+Numérote chaque risque : R-001, R-002, R-003, etc.
 Risques fonctionnels, performance, sécurité, intégration. Pour chaque : titre + description + impact + mitigation
 
 RÈGLES : exhaustif mais pertinent, langage clair, Markdown structuré."""
@@ -177,6 +180,7 @@ LANGUE : Détecte la langue de la User Story. Réponds INTÉGRALEMENT dans cette
 Ne te présente JAMAIS. Ne fais aucune introduction. Commence DIRECTEMENT par la section 1.
 
 ## 1. CAS DE TEST FONCTIONNELS (ou FUNCTIONAL TEST CASES si la User Story est en anglais)
+Numérote chaque cas : CTF-001, CTF-002, CTF-003, etc.
 Pour chaque cas de test, utilise exactement cette structure (traduis les noms de champs dans la langue de la User Story) :
 - Titre / Title
 - Préconditions / Preconditions
@@ -186,9 +190,11 @@ Pour chaque cas de test, utilise exactement cette structure (traduis les noms de
 - Priorité (Haute/Moyenne/Basse) / Priority (High/Medium/Low)
 
 ## 2. CAS LIMITES / EDGE CASES
+Numérote chaque cas : CE-001, CE-002, CE-003, etc.
 Valeurs limites, erreurs, concurrence, timeout. Pour chaque : titre + données + description + résultat attendu
 
 ## 3. SUGGESTIONS DE RISQUES / RISK SUGGESTIONS
+Numérote chaque risque : R-001, R-002, R-003, etc.
 Risques fonctionnels, performance, sécurité, intégration. Pour chaque : titre + description + impact + mitigation
 
 RÈGLES : exhaustif mais pertinent, langage clair, Markdown structuré."""
