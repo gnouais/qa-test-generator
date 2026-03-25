@@ -97,31 +97,31 @@ section[data-testid="stSidebar"] .stMarkdown h3 {
 """, unsafe_allow_html=True)
 
 # --- Prompts ---
-ANALYSIS_PROMPT = """Tu es un expert QA senior. On te donne une User Story. Tu dois analyser les informations MANQUANTES nécessaires pour générer des cas de test complets et exécutables.
+ANALYSIS_PROMPT = """You are a senior QA expert. / Tu es un expert QA senior. You are given a User Story. You must analyze the MISSING information needed to generate complete and executable test cases.
 
-LANGUE : Détecte la langue de la User Story. Pose toutes les questions dans la même langue. Si la User Story est en anglais, les questions doivent être en anglais. Si elle est en français, les questions doivent être en français.
+LANGUAGE: Detect the language of the User Story. Ask all questions in the same language. If the User Story is in English, questions must be in English. If in French, questions must be in French.
 
-Retourne UNIQUEMENT un JSON valide avec cette structure :
+Return ONLY valid JSON with this structure:
 {
   "questions": [
     {
       "id": "app_name",
-      "question": "Quel est le nom de l'application ?",
-      "why": "Pour nommer les cas de test et les URLs",
-      "example": "MonBanquier.fr"
+      "question": "What is the application name? / Quel est le nom de l'application ?",
+      "why": "To name test cases and URLs / Pour nommer les cas de test et les URLs",
+      "example": "MyApp.com / MonBanquier.fr"
     }
   ]
 }
 
-RÈGLES :
-- Identifie entre 3 et 8 questions maximum — les plus importantes uniquement
-- Chaque question doit porter sur une donnée CONCRÈTE nécessaire aux cas de test
-- Catégories de questions possibles : nom de l'app, URLs/pages, noms de boutons/champs, rôles utilisateurs, règles de validation (mot de passe, email...), messages d'erreur/succès, données de test (identifiants), contraintes techniques
-- N'inclus PAS de questions sur la User Story elle-même — elle est déjà fournie
-- Le champ "why" explique pourquoi cette info est nécessaire
-- Le champ "example" donne un exemple concret de réponse
-- Retourne UNIQUEMENT le JSON, rien d'autre
-- Pas de backticks, pas de commentaires"""
+RULES:
+- Identify between 3 and 8 questions maximum — the most important only
+- Each question must target CONCRETE data needed for test cases
+- Possible question categories: app name, URLs/pages, button/field names, user roles, validation rules (password, email...), error/success messages, test data (credentials), technical constraints
+- Do NOT include questions about the User Story itself — it is already provided
+- The "why" field explains why this info is needed
+- The "example" field gives a concrete example answer
+- Return ONLY the JSON, nothing else
+- No backticks, no comments"""
 
 SYSTEM_PROMPT = """Tu es un expert QA senior avec 15 ans d'expérience en test logiciel.
 
@@ -210,18 +210,18 @@ Risques fonctionnels, performance, sécurité, intégration. Pour chaque : titre
 
 RÈGLES : exhaustif mais pertinent, langage clair, Markdown structuré."""
 
-CSV_CONVERSION_PROMPT = """Convertis les cas de test en tableau JSON strict pour Jira.
-Extrais les cas fonctionnels et limites (PAS les risques).
-Champs : "Test Case ID" (garde les IDs originaux : CTF-001, CE-001, etc.), "Summary", "Description", "Preconditions", "Test Steps", "Expected Result", "Priority".
-Le contenu doit être dans la même langue que les cas de test fournis.
-Retourne UNIQUEMENT le JSON. Pas de backticks. JSON valide uniquement. Pas de Markdown dans les valeurs."""
+CSV_CONVERSION_PROMPT = """Convert the test cases into a strict JSON table for Jira. / Convertis les cas de test en tableau JSON strict pour Jira.
+Extract functional and edge cases (NOT risks). / Extrais les cas fonctionnels et limites (PAS les risques).
+Fields: "Test Case ID" (keep original IDs: CTF-001, CE-001, etc.), "Summary", "Description", "Preconditions", "Test Steps", "Expected Result", "Priority".
+Content must be in the same language as the test cases provided.
+Return ONLY valid JSON. No backticks. No Markdown in values."""
 
-GHERKIN_CONVERSION_PROMPT = """Convertis les cas de test en Gherkin strict.
-Les mots-clés Gherkin (Feature, Scenario, Given, When, Then, And, Scenario Outline, Examples) sont toujours en anglais.
-TOUT le reste (titres de Feature, titres de Scenario, contenu des steps, données des Examples) doit être dans la même langue que les cas de test fournis. Si les cas de test sont en anglais, tout le contenu doit être en anglais. Si les cas de test sont en français, tout le contenu doit être en français.
-Chaque cas de test = un Scenario. Pas les risques.
-Scenario Outline avec Examples pour les jeux de données multiples.
-Texte brut uniquement, pas de Markdown."""
+GHERKIN_CONVERSION_PROMPT = """Convert the test cases into strict Gherkin format. / Convertis les cas de test en Gherkin strict.
+Gherkin keywords (Feature, Scenario, Given, When, Then, And, Scenario Outline, Examples) are always in English.
+ALL other content (Feature titles, Scenario titles, step content, Examples data) MUST be in the same language as the test cases provided. If test cases are in English, ALL content must be in English. If test cases are in French, ALL content must be in French.
+Each test case = one Scenario. Do not include risks.
+Use Scenario Outline with Examples for multiple data sets.
+Plain text only, no Markdown."""
 
 # --- Header ---
 st.markdown(f"""
@@ -292,7 +292,7 @@ def generate_csv(result):
     try:
         genai.configure(api_key=api_key)
         m = genai.GenerativeModel(model_name="gemini-2.5-flash", system_instruction=CSV_CONVERSION_PROMPT)
-        r = m.generate_content(f"Convertis ces cas de test en JSON :\n\n{result}")
+        r = m.generate_content(f"Convert these test cases to JSON / Convertis ces cas de test en JSON :\n\n{result}")
         raw = r.text.strip()
         if raw.startswith("```"): raw = raw.split("\n", 1)[1]
         if raw.endswith("```"): raw = raw.rsplit("```", 1)[0]
@@ -306,7 +306,7 @@ def generate_gherkin(result):
     try:
         genai.configure(api_key=api_key)
         m = genai.GenerativeModel(model_name="gemini-2.5-flash", system_instruction=GHERKIN_CONVERSION_PROMPT)
-        r = m.generate_content(f"Convertis ces cas de test en scénarios Gherkin :\n\n{result}")
+        r = m.generate_content(f"Convert these test cases to Gherkin scenarios / Convertis ces cas de test en scénarios Gherkin :\n\n{result}")
         t = r.text.strip()
         if t.startswith("```"): t = t.split("\n", 1)[1]
         if t.endswith("```"): t = t.rsplit("```", 1)[0]
@@ -372,7 +372,7 @@ if st.session_state.get('step') == 'input' or st.session_state.get('step') is No
                 model = genai.GenerativeModel(model_name="gemini-2.5-flash", system_instruction=ANALYSIS_PROMPT)
 
                 with st.spinner("Analyse de la User Story — identification des informations manquantes..."):
-                    response = model.generate_content(f"Analyse cette User Story et identifie les informations manquantes :\n\n{user_story}")
+                    response = model.generate_content(f"Analyze this User Story and identify missing information / Analyse cette User Story et identifie les informations manquantes :\n\n{user_story}")
                     raw = response.text.strip()
                     if raw.startswith("```"): raw = raw.split("\n", 1)[1]
                     if raw.endswith("```"): raw = raw.rsplit("```", 1)[0]
@@ -527,14 +527,19 @@ if st.session_state.get('result'):
             st.download_button(label=f"CSV Jira ({csv_count})", data=csv_data, file_name="test_cases_jira.csv", mime="text/csv", use_container_width=True, key="dl_csv")
         else:
             if st.button("Générer CSV Jira", use_container_width=True, key="btn_csv"):
-                with st.spinner("Conversion en CSV Jira..."):
-                    csv_data, csv_count = generate_csv(result)
-                    if csv_data:
-                        st.session_state['csv_data'] = csv_data
-                        st.session_state['csv_count'] = csv_count
-                        st.rerun()
-                    else:
-                        st.error("Erreur CSV. Réessayez.")
+                st.session_state['generate_csv_flag'] = True
+                st.rerun()
+
+    if st.session_state.get('generate_csv_flag'):
+        st.session_state['generate_csv_flag'] = False
+        with st.spinner("Conversion en CSV Jira..."):
+            csv_data, csv_count = generate_csv(result)
+            if csv_data:
+                st.session_state['csv_data'] = csv_data
+                st.session_state['csv_count'] = csv_count
+                st.rerun()
+            else:
+                st.error("Erreur CSV. Réessayez.")
 
     with col_exp4:
         gherkin_data = st.session_state.get('gherkin_data')
@@ -542,13 +547,18 @@ if st.session_state.get('result'):
             st.download_button(label="Gherkin", data=gherkin_data, file_name="test_cases.feature", mime="text/plain", use_container_width=True, key="dl_gherkin")
         else:
             if st.button("Générer Gherkin", use_container_width=True, key="btn_gherkin"):
-                with st.spinner("Génération Gherkin..."):
-                    gherkin_data = generate_gherkin(result)
-                    if gherkin_data:
-                        st.session_state['gherkin_data'] = gherkin_data
-                        st.rerun()
-                    else:
-                        st.error("Erreur Gherkin. Réessayez.")
+                st.session_state['generate_gherkin_flag'] = True
+                st.rerun()
+
+    if st.session_state.get('generate_gherkin_flag'):
+        st.session_state['generate_gherkin_flag'] = False
+        with st.spinner("Génération Gherkin..."):
+            gherkin_data = generate_gherkin(result)
+            if gherkin_data:
+                st.session_state['gherkin_data'] = gherkin_data
+                st.rerun()
+            else:
+                st.error("Erreur Gherkin. Réessayez.")
 
     st.markdown("---")
     col_new1, col_new2, col_new3 = st.columns([1, 1, 1])
